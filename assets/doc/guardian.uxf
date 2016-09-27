@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.1.1">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>20</y>
+      <w>60</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>IES
+--
+nombre</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>160</x>
+      <y>20</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Departamento
+--
+nombre</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>150</y>
+      <w>50</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Curso
+--
+añoIni</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>160</y>
+      <w>70</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Profe
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>490</x>
+      <y>260</y>
+      <w>50</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Slot
+--
+dia
+orden
+Hini
+Hfin</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>20</x>
+      <y>350</y>
+      <w>70</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Grupo
+--
+nombre
+curso
+ciclo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>10</y>
+      <w>60</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Usuario
+--
+nombre
+ape1
+ape2
+email
+pwd
+foto
+rol</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>290</x>
+      <y>30</y>
+      <w>130</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>40</y>
+      <w>100</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>40</x>
+      <y>190</y>
+      <w>30</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>260</x>
+      <y>380</y>
+      <w>50</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Clase
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>390</y>
+      <w>200</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>280</x>
+      <y>220</y>
+      <w>30</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>320</y>
+      <w>210</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>50</x>
+      <y>70</y>
+      <w>30</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>170</x>
+      <y>60</y>
+      <w>110</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0;90.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>610</x>
+      <y>400</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Ausencia
+--
+fecha</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>400</y>
+      <w>330</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>170</y>
+      <w>70</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Guardia
+--
+fecha</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>210</y>
+      <w>190</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>170.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>320</x>
+      <y>180</y>
+      <w>300</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;280.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>650</x>
+      <y>210</y>
+      <w>30</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+</diagram>
