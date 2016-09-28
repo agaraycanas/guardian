@@ -2,7 +2,7 @@
 Introduce los datos del nuevo usuario
 </h4>
 	<form action="<?=base_url();?>usuario/loginPost" method="post">
-		<label for="idEmail">Email de educamadrid (sólo la parte izquierda de la @)</label>
+		<label for="idEmail">Email de Educamadrid (sólo la parte izquierda de la @)</label>
   			<input id="idEmail" type="text" name="email" />
   		<label for="idPassword">Password</label>
   			<input id="idPassword" type="password" name="password" />
