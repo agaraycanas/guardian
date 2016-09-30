@@ -1,0 +1,14 @@
+Ejemplo de uso de la librería
+
+<form >
+	<input type="password" name="nPass" id="idPass" required/>
+	<button type="submit" onclick="cifrar()">Enviar</button>
+</form>
+
+<script src="sha256.js"></script>
+<script>
+function cifrar(){
+	var input_pass = document.getElementById("idPass");
+	input_pass.value = Sha256.hash(input_pass.value);
+}
+</script>
