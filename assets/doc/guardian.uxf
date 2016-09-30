@@ -89,16 +89,16 @@ ciclo</panel_attributes>
     <coordinates>
       <x>400</x>
       <y>10</y>
-      <w>60</w>
+      <w>100</w>
       <h>140</h>
     </coordinates>
     <panel_attributes>Usuario
 --
 nombre
-ape1
-ape2
+apellido1
+apellido2
 email
-pwd
+password
 foto
 rol</panel_attributes>
     <additional_attributes/>
@@ -257,7 +257,8 @@ fecha</panel_attributes>
       <w>190</w>
       <h>90</h>
     </coordinates>
-    <panel_attributes>m1=1
+    <panel_attributes>vigila
+m1=1
 m2=*</panel_attributes>
     <additional_attributes>170.0;70.0;10.0;10.0</additional_attributes>
   </element>
@@ -284,5 +285,45 @@ m2=*</panel_attributes>
     <panel_attributes>m1=1
 m2=*</panel_attributes>
     <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>110</x>
+      <y>240</y>
+      <w>80</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>Asignatura
+--
+nombre
+curso
+ciclo</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>200</y>
+      <w>150</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt; imparte
+m1=*
+m2=  *</panel_attributes>
+    <additional_attributes>10.0;40.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>310</y>
+      <w>150</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>m1= 1
+m2=  *</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;80.0</additional_attributes>
   </element>
 </diagram>
