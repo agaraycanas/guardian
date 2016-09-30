@@ -22,6 +22,9 @@ class Usuario extends CI_Controller {
 				
 				enmarcar ( $this, 'home' );
 			}
+			else { //Usuario o password incorrectas
+				enmarcar($this,'usuario/error/usuPwdIncorrecto');
+			}
 		}
 	}
 

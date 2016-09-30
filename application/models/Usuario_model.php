@@ -12,6 +12,8 @@ class Usuario_model extends CI_Model {
 	}
 	
 	function existeUsuario($email, $password) {
-		return true;
+		$usuario = R::find( 'usuario', 'email LIKE ? ', ["$email"] );
+		R::close();
+		return isset($usuario[1]['password'])?$usuario[1]['password']==$password:false;
 	}
 }
