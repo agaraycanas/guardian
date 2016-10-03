@@ -1,5 +1,5 @@
 <?php
-
+$roles = ['profesor'=>0,'jefeDeEstudios'=>1,'administrador'=>2];
 function esPadre($menu, $idp) {
 	foreach ( $menu as $menu ) {
 		if ($menu ['idp'] == $idp) {

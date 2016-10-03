@@ -44,13 +44,19 @@ añoIni</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>260</x>
-      <y>160</y>
+      <y>90</y>
       <w>70</w>
-      <h>70</h>
+      <h>140</h>
     </coordinates>
-    <panel_attributes>Profe
+    <panel_attributes>Usuario
 --
-</panel_attributes>
+nombre
+apellido1
+apellido2
+email
+password
+foto
+rol</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -85,36 +91,6 @@ ciclo</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>400</x>
-      <y>10</y>
-      <w>100</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>Usuario
---
-nombre
-apellido1
-apellido2
-email
-password
-foto
-rol</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>290</x>
-      <y>30</y>
-      <w>130</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>110.0;10.0;10.0;130.0</additional_attributes>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
       <x>80</x>
@@ -122,7 +98,7 @@ rol</panel_attributes>
       <w>100</w>
       <h>40</h>
     </coordinates>
-    <panel_attributes>m1=1
+    <panel_attributes>m1=*
 m2=*</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
   </element>
@@ -202,14 +178,14 @@ m2=*</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>170</x>
-      <y>60</y>
-      <w>110</w>
-      <h>160</h>
+      <x>250</x>
+      <y>30</y>
+      <w>60</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>m1=1
 m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;130.0;90.0;130.0</additional_attributes>
+    <additional_attributes>10.0;10.0;40.0;10.0;40.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -325,5 +301,17 @@ m2=  *</panel_attributes>
     <panel_attributes>m1= 1
 m2=  *</panel_attributes>
     <additional_attributes>10.0;10.0;130.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>80</x>
+      <y>70</y>
+      <w>200</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;180.0;110.0</additional_attributes>
   </element>
 </diagram>

@@ -10,6 +10,9 @@ function enmarcar($controlador, $rutaVista, $datos = []) {
 		$datos ['header'] ['usuario'] ['nombre'] = $_SESSION ['nombreUsuario'];
 		$datos ['header'] ['usuario'] ['apellido1'] = $_SESSION ['apellido1Usuario'];
 	}
+	if (isset ( $_SESSION ['idIes'] )) {
+		$datos ['header'] ['ies'] ['nombre'] = $_SESSION ['nombreIes'];
+	}
 	
 	$controlador->load->view ( 'templates/header', $datos );
 	

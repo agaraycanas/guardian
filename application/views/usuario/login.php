@@ -9,7 +9,7 @@ function cifrar(){
 </script>
 
 <h4>
-Introduce los datos del nuevo usuario
+Introduce los datos del usuario
 </h4>
 	<form action="<?=base_url();?>usuario/loginPost" method="post">
 		<label for="idEmail">Email de Educamadrid (sólo la parte izquierda de la @)</label>
