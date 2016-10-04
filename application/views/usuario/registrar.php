@@ -3,8 +3,13 @@ var bdIES = new Array();
 
 function inicializarBDIES() {
 	<?php foreach ($body['localidad'] as $k => $v): ?>
-	aux = [<?php foreach ($body['ies'][$k] as $ies): ?>	['<?= $ies[0] ?>' , '<?= $ies[1] ?>' ] <?php if (next($body['ies'][$k])): ?>, <?php endif; ?> <?php endforeach;?> ]
-	bdIES['<?= $k ?>']= aux;
+	aux = [ 
+		<?php foreach ($body['ies'][$k] as $ies): ?>	
+			['<?= $ies[0] ?>' , '<?= $ies[1] ?>' ] 
+			<?php if (next($body['ies'][$k])): ?>, <?php endif; ?> 
+		<?php endforeach; ?> 
+		];
+	bdIES['<?= $k ?>'] = aux;
 	<?php endforeach;?>
 
 }
@@ -48,10 +53,14 @@ Introduce los datos del nuevo usuario
   		<label for="idApellido2">Segundo apellido</label>
 			<input id="idApellido2" type="text" name="apellido2">
 		
-		<?= form_dropdown('', $body['localidad'], 1, ['id'=>'idLocalidad','onChange'=>'cambiarIES()']) ?>
+  		<label for="idlocalidad">Localidad</label>
+  			<?php $idLocalidad = $body['idLocalidadEscogida']==null?1:$body['idLocalidadEscogida'] ?>
+			<?= form_dropdown('', $body['localidad'], $idLocalidad, ['id'=>'idLocalidad','onChange'=>'cambiarIES()']) ?>
 
-		<select id="idIes" name="ies_id">
-
-		</select>
+  		<label for="idIes">I.E.S.</label>
+			<select id="idIes" name="ies_id">
+			</select>
+		
+		<?= $body['iesIdEscogido']?> // <?= $body['idLocalidadEscogida']?>
   		<input type="submit" onclick="cifrar()" value="Registrar" class="button"/>
 	</form>

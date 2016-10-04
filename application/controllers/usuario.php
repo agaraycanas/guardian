@@ -12,6 +12,8 @@ class Usuario extends CI_Controller {
 			$this->load->model ( 'usuario_model' );
 			if ($this->usuario_model->existeUsuario ( $_POST ['email'], $_POST ['password'] )) {
 				$usuario = $this->usuario_model->getUsuarioPorEmail ( $_POST ['email'] );
+				$this->load->model('ies_model');
+				$ies = $this->ies_model->recuperarPorId($usuario->ies->id);
 				
 				if (session_status () == PHP_SESSION_NONE) {
 					session_start ();
@@ -19,9 +21,10 @@ class Usuario extends CI_Controller {
 				$_SESSION ['idUsuario'] = $usuario->id;
 				$_SESSION ['nombreUsuario'] = $usuario->nombre;
 				$_SESSION ['apellido1Usuario'] = $usuario->apellido1;
-				$_SESSION ['rol'] = $usuario->rol;
+				$_SESSION ['rolUsuario'] = $usuario->rol;
 				$_SESSION ['idIes'] = $usuario->ies->id;
 				$_SESSION ['nombreIes'] = $usuario->ies->nombre;
+				$_SESSION ['idLocalidad'] = $ies->localidad_id;
 				
 				// enmarcar ( $this, 'home' );
 				header ( 'Location:' . base_url () . 'home' ); // Patrón PRG
@@ -41,14 +44,23 @@ class Usuario extends CI_Controller {
 	}
 
 	function registrar() {
+		if (session_status () == PHP_SESSION_NONE) {
+			session_start ();
+		}
+		
+		// Para generar el SELECT de localidades
 		$this->load->model ( 'localidad_model' );
 		$localidades = $this->localidad_model->recuperarTodas ();
-		
+
 		$datos ['body'] ['localidad'] = [ ];
 		foreach ( $localidades as $localidad ) {
 			$datos ['body'] ['localidad'] [$localidad ['id']] = $localidad ['nombre'];
 		}
 		
+		$datos['body']['idLocalidadEscogida'] = (isset($_SESSION['idLocalidad'])) ?$_SESSION['idLocalidad']:null; 
+		 
+		
+		// Para generar el SELECT de IES
 		$this->load->model ( 'ies_model' );
 		foreach ( $localidades as $localidad ) {
 			$institutos = $this->ies_model->recuperarPorLocalidadId ($localidad['id']);
@@ -59,7 +71,9 @@ class Usuario extends CI_Controller {
 				array_push($datos ['body'] ['ies'] [$localidad ['id']],$ies);
 			}
 		}
+		$datos['body']['iesIdEscogido'] = (isset($_SESSION['idIes'])) ?$_SESSION['idIes']:null;
 		
+		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
 	}
 
