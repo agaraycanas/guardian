@@ -37,12 +37,16 @@ function cifrar(){
 <h4>
 Introduce los datos del nuevo usuario
 </h4>
-	<form action="<?=base_url();?>usuario/registrarPost" method="post">
+	<form action="<?=base_url();?>usuario/registrarPost" enctype="multipart/form-data" method="post">
 		<label for="idEmail">Email de educamadrid</label>
   			<input id="idEmail" type="text" name="email" />
 
-  		<label for="idPassword">Password</label>
+  		<label for="idPassword">Contraseña</label>
   			<input id="idPassword" type="password" name="password" />
+
+  		<label for="idFoto">Fotografía</label>
+  			<input id="idFoto" type="file" name="foto" />
+
 
   		<label for="idNombre">Nombre</label>
 			<input id="idNombre" type="text" name="nombre">
