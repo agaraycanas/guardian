@@ -57,13 +57,12 @@ class Usuario extends CI_Controller {
 			$datos ['body'] ['localidad'] [$localidad ['id']] = $localidad ['nombre'];
 		}
 		
-		$datos ['body'] ['idLocalidadEscogida'] = (isset ( $_SESSION ['idLocalidad'] )) ? $_SESSION ['idLocalidad'] : null;
+		$datos ['body'] ['idLocalidadEscogida'] = (isset ( $_SESSION ['idLocalidad'] )) ? $_SESSION ['idLocalidad'] : 1;
 		
-		// Para generar el SELECT de IES
+		// Para generar el SELECT de IES desde JAVASCRIPT
 		$this->load->model ( 'ies_model' );
 		foreach ( $localidades as $localidad ) {
 			$institutos = $this->ies_model->recuperarPorLocalidadId ( $localidad ['id'] );
-			// print_r($institutos); //DEBUG
 			$datos ['body'] ['ies'] [$localidad ['id']] = [ ];
 			foreach ( $institutos as $instituto ) {
 				$ies = [ 
@@ -73,7 +72,14 @@ class Usuario extends CI_Controller {
 				array_push ( $datos ['body'] ['ies'] [$localidad ['id']], $ies );
 			}
 		}
-		$datos ['body'] ['iesIdEscogido'] = (isset ( $_SESSION ['idIes'] )) ? $_SESSION ['idIes'] : null;
+		
+		$datos ['body'] ['idIesEscogido'] = (isset ( $_SESSION ['idIes'] )) ? $_SESSION ['idIes'] : 1;
+		
+		// Para generar el SELECT de IES inicial en HTML
+		$datos ['body'] ['iesOptions'] = [ ];
+		foreach ( $datos ['body'] ['ies'] [$datos ['body'] ['idLocalidadEscogida']] as $ies ) {
+			$datos ['body'] ['iesOptions'] [$ies [0]] = $ies [1];
+		}
 		
 		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
@@ -85,22 +91,13 @@ class Usuario extends CI_Controller {
 		$nombre = $_POST ['email'];
 		$extension = '.jpg';
 		$carpeta = './assets/img/users/'; // Debe tener “apache” permiso de escritura en ella
-		copy ( $_FILES ['foto'] ['tmp_name'], $carpeta . $nombre . $extension );
-		echo "El fichero $nombre se almacen&oacute; en $carpeta";
 		
-		/*
-		 * $config ['upload_path'] = base_url().'/assets/img/users/';
-		 * $config ['file_name'] = $_POST ['email'];
-		 * $config ['allowed_types'] = 'gif|jpg|png';
-		 * $config ['max_size'] = '2000';
-		 * $config ['max_width'] = '2024';
-		 * $config ['max_height'] = '2008';
-		 *
-		 * $this->load->library ( 'upload', $config );
-		 * $this->upload->initialize ( $config );
-		 * // $this->_create_thumbnail ($_POST['email']);
-		 *
-		 * /*
+		if ($_FILES ['foto'] ['tmp_name'] != null) {
+			copy ( $_FILES ['foto'] ['tmp_name'], $carpeta . $nombre . $extension );
+		}
+		echo "El fichero $nombre se almacen&oacute; en $carpeta"; // DEBUG
+		
+/*
 		 * if (! (isset ( $_POST ['email'] ) && isset ( $_POST ['password'] ) && isset ( $_POST ['nombre'] ) && isset ( $_POST ['apellido1'] ) && isset ( $_POST ['ies_id'] ))) {
 		 * header ( 'Location:' . base_url () . 'usuario/registrar' );
 		 * } else {
@@ -127,17 +124,31 @@ class Usuario extends CI_Controller {
 		 */
 	}
 
-	function _create_thumbnail($filename) {
-		$config ['image_library'] = 'gd2';
-		// CARPETA EN LA QUE ESTÁ LA IMAGEN A REDIMENSIONAR
-		$config ['source_image'] = '/assets/img/users/' . $filename;
-		$config ['create_thumb'] = TRUE;
-		$config ['maintain_ratio'] = TRUE;
-		// CARPETA EN LA QUE GUARDAMOS LA MINIATURA
-		$config ['new_image'] = '/assets/img/users/thumbs/';
-		$config ['width'] = 150;
-		$config ['height'] = 150;
-		$this->load->library ( 'image_lib', $config );
-		$this->image_lib->resize ();
+	function crearThumbnail($nombreImagen, $nombreThumbnail, $nuevoAncho, $nuevoAlto) {
+		
+		// Obtiene las dimensiones de la imagen.
+		list ( $ancho, $alto ) = getimagesize ( $nombreImagen );
+		
+		// Establece el alto para el thumbnail si solo se paso el ancho.
+		if ($nuevoAlto == 0 && $nuevoAncho != 0) {
+			$factorReduccion = $ancho / $nuevoAncho;
+			$nuevoAlto = $alto / $factorReduccion;
+		}
+		
+		// Establece el ancho para el thumbnail si solo se paso el alto.
+		if ($nuevoAlto != 0 && $nuevoAncho == 0) {
+			$factorReduccion = $alto / $nuevoAlto;
+			$nuevoAncho = $ancho / $factorReduccion;
+		}
+		
+		// Abre la imagen original.
+		list ( $imagen, $tipo ) = abrirImagen ( $nombreImagen );
+		
+		// Crea la nueva imagen (el thumbnail).
+		$thumbnail = imagecreatetruecolor ( $nuevoAncho, $nuevoAlto );
+		imagecopyresampled ( $thumbnail, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto );
+		
+		// Guarda la imagen.
+		guardarImagen ( $thumbnail, $nombreThumbnail, $tipo );
 	}
 }
