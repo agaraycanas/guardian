@@ -37,38 +37,51 @@ function cifrar(){
 }
 </script>
 
+
+<div class="container">
 <h4>
 Introduce los datos del nuevo profesor
 </h4>
-<p>
-(los campos con * son obligatorios)
-</p>
-	<form action="<?=base_url();?>usuario/registrarPost" enctype="multipart/form-data" method="post">
-		<label for="idEmail">* Email de educamadrid - sólo lo que está a la izquierda del "@educa.madrid.org"</label>
-  			<input id="idEmail" type="text" name="email" required="required"/>
+	<form class="form" action="<?=base_url();?>usuario/registrarPost" enctype="multipart/form-data" method="post">
+		<div class="form-group form-inline">	
+			<label for="idEmail">* Usuario de educamadrid</label>
+	  		<input class="form-control" id="idEmail" type="text" name="email" required="required" />
+			<span class="help-block">La parte izquierda de la @ del correo de educa.madrid.com</span>
+	
+  			<label for="idPassword">* Contraseña</label>
+  			<input class="form-control" id="idPassword" type="password" name="password" required="required"/>
+		</div>
 
-  		<label for="idNombre">* Nombre</label>
-			<input id="idNombre" type="text" name="nombre" required="required">
+		<div class="form-group form-inline">	
+	  		<label for="idNombre">* Nombre</label>
+			<input class="form-control" id="idNombre" type="text" name="nombre" required="required">
 
-  		<label for="idApellido1">* Primer apellido</label>
-			<input id="idApellido1" type="text" name="apellido1" required="required">
+	  		<label for="idApellido1">* Primer apellido</label>
+			<input class="form-control" id="idApellido1" type="text" name="apellido1" required="required">
 
-  		<label for="idApellido2">Segundo apellido</label>
-			<input id="idApellido2" type="text" name="apellido2">
+  			<label for="idApellido2">Segundo apellido</label>
+			<input class="form-control" id="idApellido2" type="text" name="apellido2">
+		</div>
 		
-  		<label for="idPassword">* Contraseña</label>
-  			<input id="idPassword" type="password" name="password" required="required"/>
 
-  		<label for="idFoto">Fotografía</label>
-  			<input id="idFoto" type="file" name="foto" />
+  		<div class="form-group">
+  			<label for="idFoto">Fotografía</label>
+  			<input class="form-control" id="idFoto" type="file" name="foto" />
+  			
+  			<label for="idDepartamento">Departamento</label>
+			<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
+		</div>
 
-  		<label for="idlocalidad">Localidad del IES donde trabaja</label>
+  		<div class="form-group form-inline">
+  			<label for="idlocalidad">Localidad del IES donde trabaja</label>
   			<?php $idLocalidad = $body['idLocalidadEscogida']==null?1:$body['idLocalidadEscogida'] ?>
-			<?= form_dropdown('', $body['localidad'], $idLocalidad, ['id'=>'idLocalidad','onChange'=>'cambiarIES()']) ?>
+			<?= form_dropdown('', $body['localidad'], $idLocalidad, ['class'=>'form-control' ,'id'=>'idLocalidad','onChange'=>'cambiarIES()']) ?>
 
-  		<label for="idIes">* I.E.S. donde trabaja</label>
+  			<label for="idIes">* I.E.S. donde trabaja</label>
 			<?php $idIesEscogido= $body['idIesEscogido']==null?1:$body['idIesEscogido'] ?>
-			<?= form_dropdown('ies_id', $body['iesOptions'], $idIesEscogido, ['id'=>'idIes','required'=>'required']) ?>
+			<?= form_dropdown('ies_id', $body['iesOptions'], $idIesEscogido, ['class'=>'form-control', 'id'=>'idIes','required'=>'required']) ?>
+		</div>
 			
 		<input type="submit" onclick="cifrar()" value="Registrar" class="button"/>
 	</form>
+</div>

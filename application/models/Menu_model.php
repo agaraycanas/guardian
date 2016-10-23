@@ -13,7 +13,7 @@ class Menu_model extends CI_Model {
 			$elem ['idp'] = $obj->idp;
 			$elem ['nombre'] = $obj->nombre;
 			$elem ['accion'] = $obj->accion;
-			$elem ['rol'] = $obj->accion;
+			$elem ['rol'] = $obj->rol;
 			array_push ( $sol, $elem );
 		}
 		return $sol;

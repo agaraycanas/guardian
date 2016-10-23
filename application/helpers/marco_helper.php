@@ -16,8 +16,8 @@ function enmarcar($controlador, $rutaVista, $datos = []) {
 	
 	$controlador->load->view ( 'templates/header', $datos );
 	
-	$controlador->load->model ( 'menu_model', '', true );
-	$datos ['menu'] = $controlador->menu_model->leerTodos ();
+	//$controlador->load->model ( 'menu_model', '', true );
+	//$datos ['menu'] = $controlador->menu_model->leerTodos ();
 	$controlador->load->view ( 'templates/nav', $datos );
 	
 	$controlador->load->view ( $rutaVista, $datos );

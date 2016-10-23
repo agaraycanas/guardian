@@ -90,7 +90,7 @@ class Usuario extends CI_Controller {
 		echo "$nombre | $apellido1 | $apellido2 | $email | $password | $ies_id </br>";
 		$nombre = $_POST ['email'];
 		$extension = '.jpg';
-		$carpeta = './assets/img/users/'; // Debe tener “apache” permiso de escritura en ella
+		$carpeta = './assets/img/usuario/'; // Debe tener “apache” permiso de escritura en ella
 		
 		if ($_FILES ['foto'] ['tmp_name'] != null) {
 			copy ( $_FILES ['foto'] ['tmp_name'], $carpeta . $nombre . $extension );
@@ -124,31 +124,8 @@ class Usuario extends CI_Controller {
 		 */
 	}
 
-	function crearThumbnail($nombreImagen, $nombreThumbnail, $nuevoAncho, $nuevoAlto) {
+
+	function info() {
 		
-		// Obtiene las dimensiones de la imagen.
-		list ( $ancho, $alto ) = getimagesize ( $nombreImagen );
-		
-		// Establece el alto para el thumbnail si solo se paso el ancho.
-		if ($nuevoAlto == 0 && $nuevoAncho != 0) {
-			$factorReduccion = $ancho / $nuevoAncho;
-			$nuevoAlto = $alto / $factorReduccion;
-		}
-		
-		// Establece el ancho para el thumbnail si solo se paso el alto.
-		if ($nuevoAlto != 0 && $nuevoAncho == 0) {
-			$factorReduccion = $alto / $nuevoAlto;
-			$nuevoAncho = $ancho / $factorReduccion;
-		}
-		
-		// Abre la imagen original.
-		list ( $imagen, $tipo ) = abrirImagen ( $nombreImagen );
-		
-		// Crea la nueva imagen (el thumbnail).
-		$thumbnail = imagecreatetruecolor ( $nuevoAncho, $nuevoAlto );
-		imagecopyresampled ( $thumbnail, $imagen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto );
-		
-		// Guarda la imagen.
-		guardarImagen ( $thumbnail, $nombreThumbnail, $tipo );
 	}
 }

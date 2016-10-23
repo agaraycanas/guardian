@@ -8,13 +8,19 @@ function cifrar(){
 }
 </script>
 
+<div class="container">
 <h4>
 Introduce los datos del usuario
 </h4>
-	<form action="<?=base_url();?>usuario/loginPost" method="post">
-		<label for="idEmail">Email de Educamadrid (sólo la parte izquierda de la @)</label>
-  			<input id="idEmail" type="text" name="email" />
-  		<label for="idPassword">Password</label>
-  			<input id="idPassword" type="password" name="password" />
+	<form class="form" action="<?=base_url();?>usuario/loginPost" method="post">
+		<div class="form-group">
+			<label for="idEmail">Email de Educamadrid (sólo la parte izquierda de la @)</label>
+  			<input class="form-control" id="idEmail" type="text" name="email" />
+  		</div>
+		<div class="form-group">
+  			<label for="idPassword">Password</label>
+  			<input class="form-control" id="idPassword" type="password" name="password" />
+		</div>
   		<input type="submit" onclick="cifrar()" value="Login" class="button"/>
 	</form>
+</div>

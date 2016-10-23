@@ -1,5 +1,6 @@
-<header>
-	<div id="idIES">
+<header class="container">
+<div class="row">
+	<div id="idIES" class="col-sm-3">
 		<?php if (isset($header['ies'])): ?>
 			IES <?= $header['ies']['nombre']?>
 		<?php else:?>
@@ -7,19 +8,18 @@
 		<?php endif;?>
 	</div>
 	
-	<div id="idLogo">GUARDIAN</div>
+	<div id="idLogo" class="col-sm-6 text-center">GUARDIAN</div>
 	
-	<div id="idUsuario">
+	<div id="idUsuario" class="col-sm-3">
 		<?php if (isset($header['usuario'])): ?>
-			<?= $header['usuario']['nombre'].' '.$header['usuario']['apellido1'] ?>
-			<div id="idLogout">
+			<div id="idLogout text-right">
+				<?= $header['usuario']['nombre'].' '.$header['usuario']['apellido1'] ?>
+				<span class="glyphicon glyphicon-log-out"></span>
 				<a href="<?= base_url() ?>usuario/logout">Salir</a>
 			</div>
 		<?php else:?>
-			No has hecho login 
-			<a href="<?= base_url() ?>usuario/login">Entrar</a>
-			  
-			<a href="<?= base_url() ?>usuario/registrar">Registrar</a>
+			<span class="text-right">No has hecho login</span> 
 		<?php endif;?>
 	</div>
+</div>
 </header>
