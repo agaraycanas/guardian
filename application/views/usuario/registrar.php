@@ -46,7 +46,7 @@ Introduce los datos del nuevo profesor
 		<div class="form-group form-inline">	
 			<label for="idEmail">* Usuario de educamadrid</label>
 	  		<input class="form-control" id="idEmail" type="text" name="email" required="required" />
-			<span class="help-block">La parte izquierda de la @ del correo de educa.madrid.com</span>
+			<span class="help-block"><small>La parte izquierda de la @ del correo de educa.madrid.com</small></span>
 	
   			<label for="idPassword">* Contraseña</label>
   			<input class="form-control" id="idPassword" type="password" name="password" required="required"/>

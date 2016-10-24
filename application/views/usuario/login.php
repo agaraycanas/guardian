@@ -14,8 +14,9 @@ Introduce los datos del usuario
 </h4>
 	<form class="form" action="<?=base_url();?>usuario/loginPost" method="post">
 		<div class="form-group">
-			<label for="idEmail">Email de Educamadrid (sólo la parte izquierda de la @)</label>
+			<label for="idEmail">Usuario de Educamadrid</label>
   			<input class="form-control" id="idEmail" type="text" name="email" />
+  			<span class="help-block"><small>La parte izquierda de la @ del correo de educa.madrid.com</small></span>
   		</div>
 		<div class="form-group">
   			<label for="idPassword">Password</label>
