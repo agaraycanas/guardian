@@ -81,6 +81,13 @@ class Usuario extends CI_Controller {
 			$datos ['body'] ['iesOptions'] [$ies [0]] = $ies [1];
 		}
 		
+		// Para generar el SELECT de DEPARTAMENTO inicial en HTML
+		$this->load->model ( 'departamento_model' );
+		$departamentos = $this->departamento_model->recuperarTodos ();
+		foreach ( $departamentos as $departamento) {
+			$datos ['body'] ['dptoOptions'] [$departamento['id']] = $departamento['nombre'];
+		}
+		
 		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
 	}
@@ -97,7 +104,7 @@ class Usuario extends CI_Controller {
 		}
 		echo "El fichero $nombre se almacen&oacute; en $carpeta"; // DEBUG
 		
-/*
+		/*
 		 * if (! (isset ( $_POST ['email'] ) && isset ( $_POST ['password'] ) && isset ( $_POST ['nombre'] ) && isset ( $_POST ['apellido1'] ) && isset ( $_POST ['ies_id'] ))) {
 		 * header ( 'Location:' . base_url () . 'usuario/registrar' );
 		 * } else {
@@ -124,8 +131,6 @@ class Usuario extends CI_Controller {
 		 */
 	}
 
-
 	function info() {
-		
 	}
 }

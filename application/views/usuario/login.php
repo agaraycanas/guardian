@@ -19,7 +19,7 @@ Introduce los datos del usuario
   			<span class="help-block"><small>La parte izquierda de la @ del correo de educa.madrid.com</small></span>
   		</div>
 		<div class="form-group">
-  			<label for="idPassword">Password</label>
+  			<label for="idPassword">Contraseña</label>
   			<input class="form-control" id="idPassword" type="password" name="password" />
 		</div>
   		<input type="submit" onclick="cifrar()" value="Login" class="button"/>
