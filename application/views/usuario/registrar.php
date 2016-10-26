@@ -44,15 +44,15 @@ Introduce los datos del nuevo profesor
 </h4>
 	<form action="<?=base_url();?>usuario/registrarPost" enctype="multipart/form-data" method="post">
 		<div class="form-group">
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 				<label for="idEmail">Usuario de educamadrid *</label>
 		  		<input class="form-control" id="idEmail" type="text" name="email" required="required" />
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-3">
 	  			<label for="idPassword">Contraseña *</label>
 	  			<input class="form-control" id="idPassword" type="password" name="password" required="required"/>
 			</div>
-			<div class="col-xs-4">
+			<div class="col-xs-6">
 	  			<label for="idFoto">Fotografía</label>
 	  			<input class="form-control" id="idFoto" type="file" name="foto" />
 			</div>

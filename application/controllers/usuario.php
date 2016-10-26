@@ -51,12 +51,7 @@ class Usuario extends CI_Controller {
 		// Para generar el SELECT de localidades
 		$this->load->model ( 'localidad_model' );
 		$localidades = $this->localidad_model->recuperarTodas ();
-		
-		$datos ['body'] ['localidad'] = [ ];
-		foreach ( $localidades as $localidad ) {
-			$datos ['body'] ['localidad'] [$localidad ['id']] = $localidad ['nombre'];
-		}
-		
+		$datos ['body'] ['localidad'] = crearDatosOption($localidades, 'id', 'nombre');
 		$datos ['body'] ['idLocalidadEscogida'] = (isset ( $_SESSION ['idLocalidad'] )) ? $_SESSION ['idLocalidad'] : 1;
 		
 		// Para generar el SELECT de IES desde JAVASCRIPT
@@ -76,25 +71,20 @@ class Usuario extends CI_Controller {
 		$datos ['body'] ['idIesEscogido'] = (isset ( $_SESSION ['idIes'] )) ? $_SESSION ['idIes'] : 1;
 		
 		// Para generar el SELECT de IES inicial en HTML
-		$datos ['body'] ['iesOptions'] = [ ];
+		$datos ['body'] ['iesOptions'] = [];
 		foreach ( $datos ['body'] ['ies'] [$datos ['body'] ['idLocalidadEscogida']] as $ies ) {
 			$datos ['body'] ['iesOptions'] [$ies [0]] = $ies [1];
 		}
 		
+		
 		// Para generar el SELECT de DEPARTAMENTO inicial en HTML
 		$this->load->model ( 'departamento_model' );
-		$departamentos = $this->departamento_model->recuperarTodos ();
-		foreach ( $departamentos as $departamento) {
-			$datos ['body'] ['dptoOptions'] [$departamento['id']] = $departamento['nombre'];
-		}
+		$datos ['body'] ['dptoOptions'] = crearDatosOption($this->departamento_model->recuperarTodos (), 'id', 'nombre');
+		
 		
 		// Para generar el SELECT múltiple de asignaturas inicial en HTML (asumiendo el dpto. cero) por defecto
 		$this->load->model ('asignatura_model');
-		$asignaturas = $this->asignatura_model->recuperarPorDptoId(0);
-		$datos ['body'] ['asignaturaOptions'] = [];
-		foreach ($asignaturas as $asignatura) {
-			$datos ['body'] ['asignaturaOptions'] [$asignatura['id']] = $asignatura['nombre'];
-		}
+		$datos ['body'] ['asignaturaOptions'] = crearDatosOption($this->asignatura_model->recuperarPorDptoId(1), 'id', 'nombre');
 		
 		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
