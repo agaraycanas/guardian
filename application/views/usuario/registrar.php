@@ -44,13 +44,17 @@ Introduce los datos del nuevo profesor
 </h4>
 	<form action="<?=base_url();?>usuario/registrarPost" enctype="multipart/form-data" method="post">
 		<div class="form-group">
-			<div class="col-xs-6">
+			<div class="col-xs-4">
 				<label for="idEmail">Usuario de educamadrid *</label>
 		  		<input class="form-control" id="idEmail" type="text" name="email" required="required" />
 			</div>
-			<div class="col-xs-6">
+			<div class="col-xs-4">
 	  			<label for="idPassword">Contraseña *</label>
 	  			<input class="form-control" id="idPassword" type="password" name="password" required="required"/>
+			</div>
+			<div class="col-xs-4">
+	  			<label for="idFoto">Fotografía</label>
+	  			<input class="form-control" id="idFoto" type="file" name="foto" />
 			</div>
 		</div>
 
@@ -73,17 +77,6 @@ Introduce los datos del nuevo profesor
 		
 
   		<div class="form-group">
-			<div class="col-xs-7">
-	  			<label for="idDepartamento">Departamento *</label>
-				<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
-			</div>
-			<div class="col-xs-5">
-	  			<label for="idFoto">Fotografía</label>
-	  			<input class="form-control" id="idFoto" type="file" name="foto" />
-			</div>
-		</div>
-
-  		<div class="form-group">
 			<div class="col-xs-4">
 	  			<label for="idlocalidad">Localidad del IES donde trabaja</label>
 	  			<?php $idLocalidad = $body['idLocalidadEscogida']==null?1:$body['idLocalidadEscogida'] ?>
@@ -98,8 +91,19 @@ Introduce los datos del nuevo profesor
 		</div>
 			
   		<div class="form-group">
+			<div class="col-xs-4">
+	  			<label for="idDepartamento">Departamento *</label>
+				<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
+			</div>
+			<div class="col-xs-8">
+	  			<label for="idAsignatura">Asignaturas que imparte (en este curso)</label>
+				<?= form_dropdown('asignaturas_id', $body['asignaturaOptions'], [] , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required', 'multiple'=>'multiple']) ?>
+			</div>
+		</div>
+
+  		<div class="form-group">
 			<div class="col-xs-2">
-				<input type="submit" onclick="cifrar()" value="Registrar" class="button"/>
+				<input type="submit" onclick="cifrar()" value="Registrar" class="btn btn-lg btn-primary"/>
 			</div>
 		</div>
 	</form>

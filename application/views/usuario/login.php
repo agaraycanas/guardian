@@ -22,6 +22,6 @@ Introduce los datos del usuario
   			<label for="idPassword">Contraseña</label>
   			<input class="form-control" id="idPassword" type="password" name="password" />
 		</div>
-  		<input type="submit" onclick="cifrar()" value="Login" class="button"/>
+  		<input type="submit" onclick="cifrar()" value="Login" class="btn btn-lg btn-primary"/>
 	</form>
 </div>

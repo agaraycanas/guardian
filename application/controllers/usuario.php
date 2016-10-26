@@ -88,6 +88,14 @@ class Usuario extends CI_Controller {
 			$datos ['body'] ['dptoOptions'] [$departamento['id']] = $departamento['nombre'];
 		}
 		
+		// Para generar el SELECT múltiple de asignaturas inicial en HTML (asumiendo el dpto. cero) por defecto
+		$this->load->model ('asignatura_model');
+		$asignaturas = $this->asignatura_model->recuperarPorDptoId(0);
+		$datos ['body'] ['asignaturaOptions'] = [];
+		foreach ($asignaturas as $asignatura) {
+			$datos ['body'] ['asignaturaOptions'] [$asignatura['id']] = $asignatura['nombre'];
+		}
+		
 		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
 	}
