@@ -18,30 +18,84 @@ USE `guardian`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `_menus`
+-- Table structure for table `asignatura`
 --
 
-DROP TABLE IF EXISTS `_menus`;
+DROP TABLE IF EXISTS `asignatura`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `_menus` (
-  `id` int(30) NOT NULL,
-  `idp` int(30) NOT NULL,
-  `nombre` varchar(30) NOT NULL,
-  `accion` varchar(30) NOT NULL,
-  `rol` varchar(30) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `asignatura` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alias` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nivel` tinyint(1) unsigned DEFAULT NULL,
+  `departamento_id` int(11) unsigned DEFAULT NULL,
+  `ciclo_id` int(11) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_foreignkey_asignatura_departamento` (`departamento_id`),
+  KEY `index_foreignkey_asignatura_ciclo` (`ciclo_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `_menus`
+-- Dumping data for table `asignatura`
 --
 
-LOCK TABLES `_menus` WRITE;
-/*!40000 ALTER TABLE `_menus` DISABLE KEYS */;
-INSERT INTO `_menus` VALUES (1,0,'Administrador','','adm'),(2,1,'Usuario  >','','adm'),(3,2,'Nuevo','usuario/registrar','');
-/*!40000 ALTER TABLE `_menus` ENABLE KEYS */;
+LOCK TABLES `asignatura` WRITE;
+/*!40000 ALTER TABLE `asignatura` DISABLE KEYS */;
+INSERT INTO `asignatura` VALUES (1,'Entornos de desarrollo','ED',1,1,2);
+/*!40000 ALTER TABLE `asignatura` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ciclo`
+--
+
+DROP TABLE IF EXISTS `ciclo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ciclo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  `alias` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ciclo`
+--
+
+LOCK TABLES `ciclo` WRITE;
+/*!40000 ALTER TABLE `ciclo` DISABLE KEYS */;
+INSERT INTO `ciclo` VALUES (1,'Educación secundaria obligatoria','ESO'),(2,'Desarrollo de aplicaciones Web','DAW'),(3,'Bachillerato','BACH'),(4,'Sistemas microinformáticos y redes','SMR');
+/*!40000 ALTER TABLE `ciclo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `departamento`
+--
+
+DROP TABLE IF EXISTS `departamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `departamento` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `departamento`
+--
+
+LOCK TABLES `departamento` WRITE;
+/*!40000 ALTER TABLE `departamento` DISABLE KEYS */;
+INSERT INTO `departamento` VALUES (3,'Geografía e historia'),(1,'Informática'),(2,'Lengua y literatura'),(4,'Matemáticas');
+/*!40000 ALTER TABLE `departamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -135,4 +189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-03 23:43:00
+-- Dump completed on 2016-10-27  1:27:37
