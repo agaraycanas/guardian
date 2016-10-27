@@ -14,6 +14,9 @@ class Asignatura extends CI_Controller {
 	function crearPost() {
 		extract ( $_POST );
 		$this->load->model ( 'asignatura_model' );
-		$this->asignatura_model->crear ( $nombre, $alias, $nivel, $departamento_id, $ciclo_id );
+		$datos['body']['status'] = $this->asignatura_model->crear ( $nombre, $alias, $nivel, $departamento_id, $ciclo_id );
+		$datos['body']['alias'] = $alias;
+		$datos['body']['nivel'] = $nivel;
+		$this->load->view('asignatura/crearPost',$datos);
 	}
 }

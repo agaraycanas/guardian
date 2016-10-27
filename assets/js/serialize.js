@@ -11,6 +11,7 @@ function serialize(form) {
 		case "INPUT":
 			switch (form.elements[i].type) {
 			case "text":
+			case "number":
 			case "hidden":
 			case "password":
 			case "button":

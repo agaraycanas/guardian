@@ -8,17 +8,28 @@ class Asignatura_model extends CI_Model {
 	}
 
 	public function crear($nombre, $alias, $nivel, $departamento_id, $ciclo_id) {
-		$departamento = R::load ( 'departamento', $departamento_id );
-		$ciclo = R::load ( 'ciclo', $ciclo_id );
-		$asignatura = R::dispense ( 'asignatura' );
+		$status = 0; 
 		
-		$asignatura->nombre= $nombre;
-		$asignatura->alias=$alias;
-		$asignatura->nivel=$nivel;
-		$asignatura->departamento = $departamento;
-		$asignatura->ciclo = $ciclo;
+		$fallo = R::find( 'asignatura', ' nivel = ? and ciclo_id = ? and alias = ?', [ $nivel, $ciclo_id, $alias]);
 		
-		R::store ( $asignatura );
+		if (count($fallo) == 0) { 
+			$departamento = R::load ( 'departamento', $departamento_id );
+			$ciclo = R::load ( 'ciclo', $ciclo_id );
+			$asignatura = R::dispense ( 'asignatura' );
+			
+			$asignatura->nombre= $nombre;
+			$asignatura->alias=$alias;
+			$asignatura->nivel=$nivel;
+			$asignatura->departamento = $departamento;
+			$asignatura->ciclo = $ciclo;
+			
+			R::store ( $asignatura );
+		}
+		else {
+			$status = -1;
+		}
 		R::close ();
+		
+		return ($status);
 	}
 }
