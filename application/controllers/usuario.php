@@ -86,6 +86,10 @@ class Usuario extends CI_Controller {
 		$this->load->model ('asignatura_model');
 		$datos ['body'] ['asignaturaOptions'] = crearDatosOption($this->asignatura_model->recuperarPorDptoId(1), 'id', 'nombre');
 		
+		
+		//Nos aseguramos de que cargue las asignaturas del dpto. seleccionado por defecto
+		$datos ['body'] ['onload'] = 'enviarAJAX()';
+		
 		// Desplegamos la vista
 		enmarcar ( $this, 'usuario/registrar', $datos );
 	}

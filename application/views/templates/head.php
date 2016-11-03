@@ -9,4 +9,5 @@
 	<!-- <?= link_tag('assets/css/main.css') ?> -->
 	<title>.:GUARDIAN:. Gestor de guardias en un IES</title>
 </head>
-<body>
+
+<body onload="<?=isset($body['onload'])?$body['onload']:''?>">

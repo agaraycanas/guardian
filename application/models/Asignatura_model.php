@@ -4,7 +4,19 @@ class Asignatura_model extends CI_Model {
 	public function recuperarPorDptoId($idDpto) {
 		$dpto = R::load ( 'departamento', $idDpto );
 		R::close ();
-		return $dpto->sharedAsignaturaList;
+		return $dpto->ownAsignaturaList;
+	}
+	
+	public function recuperarPorDptoIdAgrupadaPorCursos($idDpto) {
+		$asignaturas = $this->recuperarPorDptoId($idDpto);
+		$salida = [];
+		foreach ($asignaturas as $asignatura) {
+			$fila['asignatura_alias'] = $asignatura['alias'];
+			$fila['asignatura_id'] = $asignatura['id'];
+			$fila['ciclo_alias'] = $asignatura->ciclo->alias.$asignatura['nivel'];
+			array_push($salida, $fila);
+		}
+		return $salida;
 	}
 
 	public function crear($nombre, $alias, $nivel, $departamento_id, $ciclo_id) {

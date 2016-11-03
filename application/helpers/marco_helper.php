@@ -1,7 +1,7 @@
 <?php
 
 function enmarcar($controlador, $rutaVista, $datos = []) {
-	$controlador->load->view ( 'templates/head' );
+	$controlador->load->view ( 'templates/head',$datos );
 	
 	if (session_status () == PHP_SESSION_NONE) {
 		session_start ();

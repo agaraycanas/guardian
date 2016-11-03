@@ -19,4 +19,11 @@ class Asignatura extends CI_Controller {
 		$datos['body']['nivel'] = $nivel;
 		$this->load->view('asignatura/crearPost',$datos);
 	}
+	
+	function getAsignaturasAgrupadas() {
+		$id = $_GET['id'];
+		$this->load->model('asignatura_model');
+		$datos['asignaturas']=$this->asignatura_model->recuperarPorDptoIdAgrupadaPorCursos($id);
+		$this->load->view('asignatura/XasignaturasAgrupadas',$datos);
+	}
 }

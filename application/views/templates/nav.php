@@ -30,6 +30,9 @@
 					<li role="separator" class="divider"></li>
 					<li class="dropdown-header">CURSO</li>
 					<li><a href="<?=base_url()?>curso/crear">Nuevo</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdown-header">SLOT</li>
+					<li><a href="<?=base_url()?>slot/crear">Nuevo</a></li>
 				</ul>
 			</li>
 

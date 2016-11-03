@@ -1,3 +1,27 @@
+<script type="text/javascript">
+
+
+function accionAJAX(respuesta) { // PROCESAR la RESPUESTA AJAX AQUÍ
+	document.getElementById('idAcordeonAsignaturas').innerHTML = respuesta;
+}
+
+function enviarAJAX() {
+	conector = new XMLHttpRequest();
+	urlAJAX = '<?=base_url()?>asignatura/getAsignaturasAgrupadas';
+	datosSerializados = 'id='+document.getElementById('idDepartamento').value;
+	
+	conector.open('GET', urlAJAX + '?' + datosSerializados, true);
+	conector.setRequestHeader('X-Requested-With','XMLHttpRequest');
+	conector.send();
+	
+	conector.onreadystatechange = function() {
+		if (conector.readyState == 4 && conector.status == 200) {
+			accionAJAX(conector.responseText);
+		}
+	}
+}
+</script>
+
 <script>
 var bdIES = new Array();
 
@@ -78,13 +102,13 @@ Introduce los datos del nuevo profesor
 
   		<div class="form-group">
 			<div class="col-xs-4">
-	  			<label for="idlocalidad">Localidad del IES donde trabaja</label>
+	  			<label for="idlocalidad">Localidad del IES donde trabaja (este curso)</label>
 	  			<?php $idLocalidad = $body['idLocalidadEscogida']==null?1:$body['idLocalidadEscogida'] ?>
 				<?= form_dropdown('', $body['localidad'], $idLocalidad, ['class'=>'form-control' ,'id'=>'idLocalidad','onChange'=>'cambiarIES()']) ?>
 			</div>
 
 			<div class="col-xs-8">
-	  			<label for="idIes">I.E.S. donde trabaja *</label>
+	  			<label for="idIes">I.E.S. donde trabaja (este curso)*</label>
 				<?php $idIesEscogido= $body['idIesEscogido']==null?1:$body['idIesEscogido'] ?>
 				<?= form_dropdown('ies_id', $body['iesOptions'], $idIesEscogido, ['class'=>'form-control', 'id'=>'idIes','required'=>'required']) ?>
 			</div>
@@ -93,11 +117,9 @@ Introduce los datos del nuevo profesor
   		<div class="form-group">
 			<div class="col-xs-4">
 	  			<label for="idDepartamento">Departamento *</label>
-				<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
+				<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['onchange'=>'enviarAJAX()', 'class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
 			</div>
-			<div class="col-xs-8">
-	  			<label for="idAsignatura">Asignaturas que imparte (en este curso)</label>
-				<?= form_dropdown('asignaturas_id', $body['asignaturaOptions'], [] , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required', 'multiple'=>'multiple']) ?>
+			<div id="idAcordeonAsignaturas" class="col-xs-8">
 			</div>
 		</div>
 
@@ -106,5 +128,6 @@ Introduce los datos del nuevo profesor
 				<input type="submit" onclick="cifrar()" value="Registrar" class="btn btn-lg btn-primary"/>
 			</div>
 		</div>
+		
 	</form>
 </div>
