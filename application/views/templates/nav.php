@@ -15,9 +15,6 @@
 				<ul class="dropdown-menu">
 					<li class="dropdown-header">ASIGNATURA</li>
 					<li><a href="<?=base_url()?>asignatura/crear">Nueva</a></li>
-					<li role="separator" class="divider"></li>
-					<li class="dropdown-header">OTRO BEAN</li>
-					<li><a href="<?=base_url()?>bean/accion">Otra accion</a></li>
 				</ul>
 			</li>
 
@@ -33,12 +30,14 @@
 					<li role="separator" class="divider"></li>
 					<li class="dropdown-header">SLOT</li>
 					<li><a href="<?=base_url()?>slot/crear">Nuevo</a></li>
+					<li role="separator" class="divider"></li>
+					<li class="dropdown-header">IES</li>
+					<li><a href="<?=base_url()?>ies/modificarCiclos">Ciclos asignados</a></li>
 				</ul>
 			</li>
 
-			<li><a href="#">Page 2</a></li>
+			<li><a href="#">Organigrama IES</a></li>
 
-			<li><a href="#">Page 3</a></li>
 		</ul>
 		
 		<ul class="nav navbar-nav navbar-right">

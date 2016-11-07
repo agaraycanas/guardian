@@ -8,7 +8,9 @@
 			<?php endif;?>
 		</div>
 		
-		<div id="idLogo" class="col-xs-6 text-center">GUARDIAN</div>
+		<div id="idLogo" class="col-xs-6 text-center">
+			<img src="<?=base_url()?>assets/img/logo/guardian.png" class="img-rounded" alt="Logo Guardian" width="100" height="15">
+		</div>
 		
 		<div id="idUsuario" class="col-xs-3">
 			<?php if (isset($header['usuario'])): ?>

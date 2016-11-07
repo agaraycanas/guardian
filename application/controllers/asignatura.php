@@ -21,9 +21,12 @@ class Asignatura extends CI_Controller {
 	}
 	
 	function getAsignaturasAgrupadas() {
-		$id = $_GET['id'];
+		if (session_status () == PHP_SESSION_NONE) {session_start ();}
+		$dptoId = $_GET['id'];
 		$this->load->model('asignatura_model');
-		$datos['asignaturas']=$this->asignatura_model->recuperarPorDptoIdAgrupadaPorCursos($id);
+		$this->load->model('ies_model');
+		$idCiclosImpartidos = $this->ies_model->obtenerIdCiclosSeleccionados($_SESSION['idIes']);
+		$datos['asignaturas']=$this->asignatura_model->recuperarPorDptoIdAgrupadaPorCursos($dptoId,$idCiclosImpartidos);
 		$this->load->view('asignatura/XasignaturasAgrupadas',$datos);
 	}
 }

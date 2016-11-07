@@ -1,6 +1,6 @@
 <div class="container">
 	<h3>Introduce el número de slots diarios para el curso <?= $body['curso']?> - <?= $body['curso']+1?></h3>
-	<p>Incluye los recreos y el horario matutino y vespertino en el caso de
+	<p>NO incluir slot de recreos. Incluir horario matutino y vespertino en el caso de
 		que el horario cubra todo el día</p>
 	<form action="<?=base_url() ?>slot/crear">
 		<div class="col-xs-2">

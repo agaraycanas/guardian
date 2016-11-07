@@ -41,7 +41,6 @@ function enviarAJAX() {
 			<div class="col-xs-1">Slot</div>
 			<div class="col-xs-2">Hora de inicio</div>
 			<div class="col-xs-2">Hora de fin</div>
-			<div class="col-xs-1">¿Recreo?</div>
 		</div>
 		<input type="hidden" name="numSlots" value="<?=$body['numSlots'] ?>">
 		
@@ -57,10 +56,6 @@ function enviarAJAX() {
 			
 			<div class="form-group col-xs-2">
 				<input class="form-control" type="time" id="idFin" pattern="HH:MM" value="09:00" name="hFin<?=$i?>">
-			</div>
-			
-			<div class="form-group col-xs-1">
-				<input class="form-control" type="checkbox" id="idFin"  name="esRecreo<?=$i?>">
 			</div>
 		</div>
 		<?php endfor; ?>

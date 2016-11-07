@@ -4,20 +4,18 @@ class Slot_model extends CI_Model {
 	public function crear($anyoIni, $datos) {
 		$status = 0;
 		
-		$cursos = R::find ( 'curso', 'anyo_ini = ?', [ $anyoIni ] );
+		$curso = R::findOne( 'curso', 'anyo_ini = ?', [ $anyoIni ] );
 		
-		if (count ( $cursos ) != 0) {
-			$curso = $cursos [0];
+		if ($curso != null) {
 			
-			for($i = 1; $i <= $numSlots; $i ++) {
-				for($dia = 1; $dia <= 7; $dia ++) {
+			for($i = 1; $i <= $datos['numSlots']; $i ++) {
+				for($dia = 1; $dia <= 5; $dia ++) {
 					$slot = R::dispense ( 'slot' );
 					
 					$slot->dia = $dia;
 					$slot->orden = $i;
 					$slot->h_ini = $datos['hIni'.$i];
 					$slot->h_fin = $datos['hFin'.$i];
-					$slot->es_recreo = isset($datos['esRecreo'.$i]);
 					$slot->curso = $curso;
 					
 					R::store($slot);

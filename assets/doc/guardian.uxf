@@ -70,7 +70,6 @@ rol</panel_attributes>
 --
 dia
 orden
-esRecreo
 Hini
 Hfin</panel_attributes>
     <additional_attributes/>
@@ -355,43 +354,45 @@ m2=1</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>324</x>
-      <y>312</y>
+      <y>288</y>
       <w>72</w>
-      <h>72</h>
+      <h>108</h>
     </coordinates>
     <panel_attributes>Ciclo
 --
 nombre
-alias</panel_attributes>
+alias
+grado
+familia</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>240</x>
-      <y>312</y>
+      <y>324</y>
       <w>108</w>
-      <h>72</h>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;30.0;70.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>144</x>
-      <y>360</y>
+      <y>372</y>
       <w>204</w>
-      <h>120</h>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=*
 m2=1
 </panel_attributes>
-    <additional_attributes>10.0;80.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;70.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -404,5 +405,17 @@ m2=1
     <panel_attributes>m1=1
 m2=*</panel_attributes>
     <additional_attributes>60.0;10.0;10.0;10.0;10.0;270.0;550.0;270.0;550.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>144</x>
+      <y>72</y>
+      <w>228</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>m1=*
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;180.0</additional_attributes>
   </element>
 </diagram>
