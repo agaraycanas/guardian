@@ -119,6 +119,7 @@ Introduce los datos del nuevo profesor
 	  			<label for="idDepartamento">Departamento *</label>
 				<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['onchange'=>'enviarAJAX()', 'class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
 			</div>
+			
 			<div id="idAcordeonAsignaturas" class="col-xs-8">
 			</div>
 		</div>

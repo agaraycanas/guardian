@@ -1,5 +1,3 @@
-<footer>
-	<div id="idFooter">
+<footer class="container">
 	<?= isset($d['footer']['mensaje'])?$d['footer']['mensaje']:''?>
-	</div>
 </footer>

@@ -1,4 +1,5 @@
-<div class="container">
+
+<header class="container">
 	<div class="row">
 		<div id="idIES" class="col-xs-3">
 			<?php if (isset($header['ies'])): ?>
@@ -24,4 +25,4 @@
 			<?php endif;?>
 		</div>
 	</div>
-</div>
+</header>

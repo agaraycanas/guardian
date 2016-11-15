@@ -51,7 +51,7 @@ class Usuario extends CI_Controller {
 		// Para generar el SELECT de localidades
 		$this->load->model ( 'localidad_model' );
 		$localidades = $this->localidad_model->recuperarTodas ();
-		$datos ['body'] ['localidad'] = crearDatosOption($localidades, 'id', 'nombre');
+		$datos ['body'] ['localidad'] = crearDatosOption ( $localidades, 'id', 'nombre' );
 		$datos ['body'] ['idLocalidadEscogida'] = (isset ( $_SESSION ['idLocalidad'] )) ? $_SESSION ['idLocalidad'] : 1;
 		
 		// Para generar el SELECT de IES desde JAVASCRIPT
@@ -71,23 +71,20 @@ class Usuario extends CI_Controller {
 		$datos ['body'] ['idIesEscogido'] = (isset ( $_SESSION ['idIes'] )) ? $_SESSION ['idIes'] : 1;
 		
 		// Para generar el SELECT de IES inicial en HTML
-		$datos ['body'] ['iesOptions'] = [];
+		$datos ['body'] ['iesOptions'] = [ ];
 		foreach ( $datos ['body'] ['ies'] [$datos ['body'] ['idLocalidadEscogida']] as $ies ) {
 			$datos ['body'] ['iesOptions'] [$ies [0]] = $ies [1];
 		}
 		
-		
 		// Para generar el SELECT de DEPARTAMENTO inicial en HTML
 		$this->load->model ( 'departamento_model' );
-		$datos ['body'] ['dptoOptions'] = crearDatosOption($this->departamento_model->recuperarTodos (), 'id', 'nombre');
-		
+		$datos ['body'] ['dptoOptions'] = crearDatosOption ( $this->departamento_model->recuperarTodos (), 'id', 'nombre' );
 		
 		// Para generar el SELECT múltiple de asignaturas inicial en HTML (asumiendo el dpto. cero) por defecto
-		$this->load->model ('asignatura_model');
-		$datos ['body'] ['asignaturaOptions'] = crearDatosOption($this->asignatura_model->recuperarPorDptoId(1), 'id', 'nombre');
+		$this->load->model ( 'asignatura_model' );
+		$datos ['body'] ['asignaturaOptions'] = crearDatosOption ( $this->asignatura_model->recuperarPorDptoId ( 1 ), 'id', 'nombre' );
 		
-		
-		//Nos aseguramos de que cargue las asignaturas del dpto. seleccionado por defecto
+		// Nos aseguramos de que cargue las asignaturas del dpto. seleccionado por defecto
 		$datos ['body'] ['onload'] = 'enviarAJAX()';
 		
 		// Desplegamos la vista
@@ -95,44 +92,48 @@ class Usuario extends CI_Controller {
 	}
 
 	function registrarPost() {
-		extract ( $_POST );
-		echo "$nombre | $apellido1 | $apellido2 | $email | $password | $ies_id </br>";
-		$nombre = $_POST ['email'];
-		$extension = '.jpg';
-		$carpeta = './assets/img/usuario/'; // Debe tener “apache” permiso de escritura en ella
-		
-		if ($_FILES ['foto'] ['tmp_name'] != null) {
-			copy ( $_FILES ['foto'] ['tmp_name'], $carpeta . $nombre . $extension );
+		if (! (isset ( $_POST ['email'] ) && isset ( $_POST ['password'] ) && isset ( $_POST ['nombre'] ) && isset ( $_POST ['apellido1'] ) && isset ( $_POST ['ies_id'] ) && isset ( $_POST ['departamento_id'] ))) {
+			header ( 'Location:' . base_url () . 'usuario/registrar' );
+		} else {
+			$this->load->model ( 'usuario_model' );
+			if (!$this->usuario_model->existeUsuario ( $_POST ['email'])) {
+				// Guardamos la información del usuario
+				$email 		= $_POST['email'];
+				$password	= $_POST['password'];
+				$nombre		= $_POST['nombre'];
+				$apellido1	= $_POST['apellido1'];
+				$apellido2	= $_POST['apellido2'];
+				$ies_id		= $_POST['ies_id'];
+				$departamento_id	= $_POST['departamento_id'];
+				$asignaturas_id		= isset($_POST['asignaturas_id'])?$_POST['asignaturas_id']:[];
+				
+				$this->usuario_model->crearUsuario($email,$password,$nombre,$apellido1,$apellido2,$ies_id,$departamento_id,$asignaturas_id);
+				
+				// Guardamos la foto, si es que ha subido alguna
+				if ($_FILES ['foto'] ['tmp_name'] != null) {
+					$nombre = $_POST ['email'];
+					$nombreOriginal = explode ( ".", $_FILES ['foto'] ['name'] );
+					$extension = end ( $nombreOriginal );
+					$carpeta = './assets/img/usuario/'; // Debe tener “apache” permiso de escritura en ella
+					copy ( $_FILES ['foto'] ['tmp_name'], $carpeta . $nombre . '.' . $extension );
+					echo "El fichero $nombre se almacen&oacute; en $carpeta"; // DEBUG
+				}
+				
+				$datos['body']['nombre'] = $nombre;
+				$datos['body']['apellido1'] = $apellido1;
+				enmarcar($this, 'usuario/registrarPostOK',$datos); // Patrón PRG
+				
+			} else { // Usuario o password incorrectas
+				$datos['body']['email'] = $_POST['email'];
+				enmarcar($this, 'usuario/registrarPostERROR',$datos);
+			}
 		}
-		echo "El fichero $nombre se almacen&oacute; en $carpeta"; // DEBUG
 		
-		/*
-		 * if (! (isset ( $_POST ['email'] ) && isset ( $_POST ['password'] ) && isset ( $_POST ['nombre'] ) && isset ( $_POST ['apellido1'] ) && isset ( $_POST ['ies_id'] ))) {
-		 * header ( 'Location:' . base_url () . 'usuario/registrar' );
-		 * } else {
-		 * $this->load->model ( 'usuario_model' );
-		 * if ($this->usuario_model->existeUsuario ( $_POST ['email'], $_POST ['password'] )) {
-		 * $usuario = $this->usuario_model->getUsuarioPorEmail ( $_POST ['email'] );
-		 *
-		 * if (session_status () == PHP_SESSION_NONE) {
-		 * session_start ();
-		 * }
-		 * $_SESSION ['idUsuario'] = $usuario->id;
-		 * $_SESSION ['nombreUsuario'] = $usuario->nombre;
-		 * $_SESSION ['apellido1Usuario'] = $usuario->apellido1;
-		 * $_SESSION ['rol'] = $usuario->rol;
-		 * $_SESSION ['idIes'] = $usuario->ies->id;
-		 * $_SESSION ['nombreIes'] = $usuario->ies->nombre;
-		 *
-		 * // enmarcar ( $this, 'home' );
-		 * header ( 'Location:' . base_url () . 'home' ); // Patrón PRG
-		 * } else { // Usuario o password incorrectas
-		 * enmarcar ( $this, 'usuario/error/usuPwdIncorrecto' );
-		 * }
-		 * }
-		 */
 	}
+	
+	public function listar() {
+		enmarcar($this, 'templates/construccion');
+	}
+	
 
-	function info() {
-	}
 }
