@@ -45,7 +45,7 @@ function enviarAJAX(modo) {
 <h4>
 Introduce los datos de la nueva asignatura
 </h4>
-	<form id="idForm" class="form" action="<?=base_url();?>asignatura/crearPost" method="post">
+	<form id="idForm" class="form col-xs-6" action="<?=base_url();?>asignatura/crearPost" method="post">
   		<div class="form-group">
   			<label for="idDepartamento">Departamento</label>
 			<?= form_dropdown('departamento_id', $body['dptoOptions'], 0 , ['class'=>'form-control' ,'id'=>'idDepartamento','required'=>'required']) ?>
